@@ -4,6 +4,7 @@ import * as axios from "axios";
 import Scream from "../components/Scream";
 
 class Home extends Component {
+
     state = {
         screams: null
     };

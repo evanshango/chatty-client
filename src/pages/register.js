@@ -6,16 +6,24 @@ import AppIcon from '../images/chatty.png';
 import Typography from "@material-ui/core/Typography";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+//Redux
+import {connect} from 'react-redux';
+import {registerUser} from "../redux/actions/userActions";
 
 const styles = theme => ({...theme.styling});
 
 class register extends Component {
     constructor(props) {
         super(props);
-        this.state = {handle: '', email: '', password: '', confirmPassword: '', loading: false, errors: {}}
+        this.state = {handle: '', email: '', password: '', confirmPassword: '', errors: {}}
+    }
+
+    static getDerivedStateFromProps(nextProps) {
+        if (nextProps.UI.errors) {
+            return ({errors: nextProps.UI.errors}) // <- this is setState equivalent
+        } else return null;
     }
 
     handleChange = event => {
@@ -34,18 +42,12 @@ class register extends Component {
             password: this.state.password,
             confirmPassword: this.state.confirmPassword
         };
-        axios.post('/register', newUserData).then(res => {
-            this.setState({loading: false});
-            localStorage.setItem('token', `Bearer ${res.data.token}`);
-            this.props.history.push('/');
-        }).catch(err => {
-            this.setState({errors: err.response.data, loading: false})
-        })
+        this.props.registerUser(newUserData, this.props.history)
     };
 
     render() {
-        const {classes} = this.props;
-        const {errors, loading} = this.state;
+        const {classes, UI: {loading}} = this.props;
+        const {errors} = this.state;
         return (
             <Grid container className={classes.form}>
                 <Grid item sm/>
@@ -88,7 +90,15 @@ class register extends Component {
 }
 
 register.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    UI: PropTypes.object.isRequired,
+    registerUser: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(register);
+const mapStateToProps = state => ({
+    user: state.user,
+    UI: state.UI
+});
+
+export default connect(mapStateToProps, {registerUser})(withStyles(styles)(register));
