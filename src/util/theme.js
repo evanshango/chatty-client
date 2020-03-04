@@ -41,5 +41,5 @@ export default {
         progress: {
             position: 'absolute'
         }
-    }
+    },
 }
