@@ -15,7 +15,7 @@ export default {
     },
     styling: {
         typography: {
-            useNextVariants : true
+            useNextVariants: true
         },
         form: {
             textAlign: 'center'

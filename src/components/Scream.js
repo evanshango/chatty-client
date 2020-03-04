@@ -14,8 +14,8 @@ const styles = {
         marginBottom: 10
     },
     image: {
-        minWidth: 200,
-        minHeight: 180
+        minWidth: 180,
+        minHeight: 150
     },
     content: {
         padding: 25,
