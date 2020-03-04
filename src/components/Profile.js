@@ -130,13 +130,13 @@ class Profile extends Component {
             <Paper className={classes.paper}>
                 <Typography variant='body2' align='center'>
                     No profile found. Please login again
-                    <div className={classes.buttons}>
-                        <Button variant='contained' color='primary' component={Link} to='/login'
-                                style={{minWidth: '110px'}}>Login</Button>
-                        <Button variant='contained' color='secondary' component={Link} to='/register'
-                                style={{minWidth: '110px'}}>Register</Button>
-                    </div>
                 </Typography>
+                <div className={classes.buttons}>
+                    <Button variant='contained' color='primary' component={Link} to='/login'
+                            style={{minWidth: '110px'}}>Login</Button>
+                    <Button variant='contained' color='secondary' component={Link} to='/register'
+                            style={{minWidth: '110px'}}>Register</Button>
+                </div>
             </Paper>
         )) : (<p>loading...</p>);
         return profileMarkup;

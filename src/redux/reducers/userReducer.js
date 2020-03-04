@@ -1,5 +1,5 @@
 import {
-    SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER
+    SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_SCREAM, UNLIKE_SCREAM
 } from "../reducers/types";
 
 const initialState = {
@@ -20,6 +20,19 @@ export default function (state = initialState, action) {
             return {authenticated: true, ...action.payload, loading: false};
         case LOADING_USER:
             return {...state, loading: true};
+        case LIKE_SCREAM:
+            return {
+                ...state, likes: [...state.likes,
+                    {
+                        handle: state.credentials.handle,
+                        screamId: action.payload.screamId
+                    }]
+            };
+        case UNLIKE_SCREAM:
+            return {
+                ...state,
+                likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
+            };
         default:
             return state;
     }
