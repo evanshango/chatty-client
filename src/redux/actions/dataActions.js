@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
     LOADING_DATA, SET_SCREAMS, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, POST_SCREAM, LOADING_UI, SET_ERRORS,
-    CLEAR_ERRORS
+    CLEAR_ERRORS, SET_SCREAM, STOP_LOADING_UI
 } from "../reducers/types";
 
 export const getScreams = () => dispatch => {
@@ -13,6 +13,16 @@ export const getScreams = () => dispatch => {
         })
     }).catch(err => {
         dispatch({type: SET_SCREAMS, payload: []})
+    })
+};
+
+export const getScream = screamId => dispatch => {
+    dispatch({type: LOADING_UI});
+    axios.get(`/scream/${screamId}`).then(res => {
+        dispatch({type: SET_SCREAM, payload: res.data});
+        dispatch({type: STOP_LOADING_UI})
+    }).catch(err => {
+        console.log(err)
     })
 };
 
