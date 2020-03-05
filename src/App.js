@@ -20,12 +20,12 @@ import user from "./pages/user";
 const theme = createMuiTheme(themeFile);
 
 const token = localStorage.token;
-if (token){
+if (token) {
     const decodedToken = jwtDecode(token);
-    if (decodedToken.exp * 1000 < Date.now()){
+    if (decodedToken.exp * 1000 < Date.now()) {
         store.dispatch(logoutUser());
         window.location.href = '/login';
-    } else{
+    } else {
         store.dispatch({type: SET_AUTHENTICATED});
         axios.defaults.headers.common['Authorization'] = token;
         store.dispatch(getUserData());
@@ -45,6 +45,7 @@ class App extends Component {
                                 <AuthRoute exact path='/login' component={login}/>
                                 <AuthRoute exact path='/register' component={register}/>
                                 <Route exact path='/users/:handle' component={user}/>
+                                <Route exact path='/users/:handle/scream/:screamId' component={user}/>
                             </Switch>
                         </div>
                     </Router>
