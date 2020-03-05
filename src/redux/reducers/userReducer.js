@@ -22,11 +22,7 @@ export default function (state = initialState, action) {
             return {...state, loading: true};
         case LIKE_SCREAM:
             return {
-                ...state, likes: [...state.likes,
-                    {
-                        handle: state.credentials.handle,
-                        screamId: action.payload.screamId
-                    }]
+                ...state, likes: [...state.likes, {handle: state.credentials.handle, screamId: action.payload.screamId}]
             };
         case UNLIKE_SCREAM:
             return {

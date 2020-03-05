@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MyButton from "../util/MyButton";
-import AddIcon from "@material-ui/icons/Add";
 import HomeIcon from "@material-ui/icons/Home";
 import Notifications from "@material-ui/icons/Notifications";
+import PostScream from "./PostScream";
 
 class Navbar extends Component {
     render() {
@@ -18,19 +18,11 @@ class Navbar extends Component {
                 <Toolbar className='nav-container'>
                     {authenticated ? (
                         <Fragment>
-                            <MyButton tip='Home'>
-                                <Link to='/'>
-                                    <HomeIcon/>
-                                </Link>
-                            </MyButton>
-                            <MyButton tip='Post a Scream'>
-                                <AddIcon/>
-                            </MyButton>
-                            <MyButton tip='Notifications'>
-                                <Notifications/>
-                            </MyButton>
+                            <MyButton tip='Home'><Link to='/'><HomeIcon/></Link></MyButton>
+                            <PostScream/>
+                            <MyButton tip='Notifications'><Notifications/></MyButton>
                         </Fragment>
-                    ): (
+                    ) : (
                         <Fragment>
                             <Button color='inherit' component={Link} to='/'>Home</Button>
                             <Button color='inherit' component={Link} to='/login'>Login</Button>
@@ -48,7 +40,7 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-   authenticated: state.user.authenticated,
+    authenticated: state.user.authenticated,
 });
 
 export default connect(mapStateToProps)(Navbar);
