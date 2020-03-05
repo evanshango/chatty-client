@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import {Link} from "react-router-dom";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import withStyles from "@material-ui/core/styles/withStyles";
-import {likeScream, unlikeScream} from "../redux/actions/dataActions";
+import {likeScream, unlikeScream} from "../../redux/actions/dataActions";
 
 const styles = theme => ({
     ...theme.styling

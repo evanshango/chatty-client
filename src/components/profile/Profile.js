@@ -12,10 +12,10 @@ import dayjs from "dayjs";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import EditIcon from "@material-ui/icons/Edit";
-import {uploadImage, logoutUser} from "../redux/actions/userActions";
+import {uploadImage, logoutUser} from "../../redux/actions/userActions";
 import {KeyboardReturn} from "@material-ui/icons";
 import EditDetails from "./EditDetails";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 const styles = theme => ({
     paper: {padding: 20},

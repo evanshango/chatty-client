@@ -10,11 +10,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
-import {getScream} from "../redux/actions/dataActions";
-import MyButton from "../util/MyButton";
+import {getScream} from "../../redux/actions/dataActions";
+import MyButton from "../../util/MyButton";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import LikeButton from "./LikeButton";
 import ChatIcon from "@material-ui/icons/Chat";
+import Comments from "../Comments";
 
 const styles = theme => ({
     ...theme.styling,
@@ -34,10 +35,6 @@ const styles = theme => ({
         height: 150,
         borderRadius: '50%',
         objectFit: 'cover'
-    },
-    invisibleSeparator: {
-        border: 'none',
-        margin: 4
     },
     spinnerDiv: {
         textAlign: 'center',
@@ -61,7 +58,7 @@ class ScreamDialog extends Component {
 
     render() {
         const {
-            classes, scream: {screamId, body, createdAt, likeCount, commentCount, userImage, handle},
+            classes, scream: {screamId, body, createdAt, likeCount, commentCount, userImage, handle, comments},
             UI: {loading}
         } = this.props;
 
@@ -93,6 +90,8 @@ class ScreamDialog extends Component {
                     </MyButton>
                     <span>{commentCount} comments</span>
                 </Grid>
+                <hr className={classes.visibleSeparator}/>
+                <Comments comments={comments}/>
             </Grid>
         );
 

@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import ChatIcon from "@material-ui/icons/Chat";
 import DeleteScream from "./DeleteScream";
 import ScreamDialog from "./ScreamDialog";
