@@ -63,7 +63,6 @@ class PostScream extends Component {
         }
     }
 
-
     render() {
         const {errors} = this.state;
         const {classes, UI: {loading}} = this.props;

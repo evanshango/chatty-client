@@ -10,12 +10,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import dayjs from 'dayjs';
 import {Link} from 'react-router-dom';
-import {getScream} from "../../redux/actions/dataActions";
+import {getScream, clearErrors} from "../../redux/actions/dataActions";
 import MyButton from "../../util/MyButton";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import LikeButton from "./LikeButton";
 import ChatIcon from "@material-ui/icons/Chat";
-import Comments from "../Comments";
+import Comments from "../comments/Comments";
+import CommentForm from "../comments/CommentForm";
 
 const styles = theme => ({
     ...theme.styling,
@@ -52,7 +53,8 @@ class ScreamDialog extends Component {
     };
 
     handleClose = () => {
-        this.setState({open: false})
+        this.setState({open: false});
+        this.props.clearErrors();
     };
 
 
@@ -91,6 +93,7 @@ class ScreamDialog extends Component {
                     <span>{commentCount} comments</span>
                 </Grid>
                 <hr className={classes.visibleSeparator}/>
+                <CommentForm screamId={screamId}/>
                 <Comments comments={comments}/>
             </Grid>
         );
@@ -114,6 +117,7 @@ class ScreamDialog extends Component {
 }
 
 ScreamDialog.propType = {
+    clearErrors: PropTypes.func.isRequired,
     getScream: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     handle: PropTypes.string.isRequired,
@@ -127,7 +131,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-    getScream
+    getScream,
+    clearErrors
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ScreamDialog));
