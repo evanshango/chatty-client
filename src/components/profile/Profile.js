@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import EditIcon from "@material-ui/icons/Edit";
-import {uploadImage, logoutUser} from "../../redux/actions/userActions";
+import {logoutUser, uploadImage} from "../../redux/actions/userActions";
 import {KeyboardReturn} from "@material-ui/icons";
 import EditDetails from "./EditDetails";
 import MyButton from "../../util/MyButton";
@@ -86,7 +86,7 @@ class Profile extends Component {
             classes, user:
                 {credentials: {handle, createdAt, imageUrl, bio, website, location}, loading, authenticated}
         } = this.props;
-        let profileMarkup = !loading ? (authenticated ? (
+        return !loading ? (authenticated ? (
             <Paper className={classes.paper}>
                 <div className={classes.profile}>
                     <div className="image-wrapper">
@@ -139,7 +139,6 @@ class Profile extends Component {
                 </div>
             </Paper>
         )) : (<p>loading...</p>);
-        return profileMarkup;
     }
 }
 

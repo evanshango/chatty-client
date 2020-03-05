@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {getScreams} from "../redux/actions/dataActions";
 import PropTypes from 'prop-types';
 
-class Home extends Component {
+class home extends Component {
 
     componentDidMount() {
         this.props.getScreams();
@@ -30,7 +30,7 @@ class Home extends Component {
     }
 }
 
-Home.propTypes = {
+home.propTypes = {
     getScreams: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired
 };
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
     data: state.data
 });
 
-export default connect(mapStateToProps, {getScreams})(Home);
+export default connect(mapStateToProps, {getScreams})(home);
