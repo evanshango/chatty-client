@@ -19,6 +19,8 @@ import user from "./pages/user";
 
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL = 'https://us-central1-chatty-e4d82.cloudfunctions.net/api';
+
 const token = localStorage.token;
 if (token) {
     const decodedToken = jwtDecode(token);
